@@ -1,0 +1,4 @@
+pytesseract
+transformers
+sqlalchemy
+mysql-connector-python

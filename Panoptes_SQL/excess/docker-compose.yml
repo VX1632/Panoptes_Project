@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  app:
+    build: ./Panoptes_SQL
+    volumes:
+      - ./Panoptes_SQL:/app
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"  # Adjust if your app serves HTTP requests on a different port
+
+  db:
+    build: ./Panoptes_SQL
+    environment:
+      MYSQL_ROOT_PASSWORD: Rum8&Tag2
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: teamAdmin
+      MYSQL_PASSWORD: NookBrosGotchu
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./Panoptes_SQL/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"  # Optional: expose MySQL port for local development
+
+volumes:
+  mysql-data:

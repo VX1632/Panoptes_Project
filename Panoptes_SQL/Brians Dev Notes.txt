@@ -1,0 +1,54 @@
+docker run --name my-mysql-db -e MYSQL_ROOT_PASSWORD=myrootpassword -e MYSQL_DATABASE=mydatabase -e MYSQL_USER=myuser -e MYSQL_PASSWORD=mypassword -p 3306:3306 -d mysql:latest
+
+    proj_dev_db: "proj" could be an abbreviation of your project name, "dev" indicates this is the development environment, and "db" signifies that this resource is a database.
+		proj_dev_db
+			root
+				Rum8&Tag2
+				Pr0metheus
+				6dQed6v21K47Yf0
+			teamAdmin
+				engine = sqlalchemy.create_engine('mysql+mysqlconnector://teamAdmin:<generated_password>@localhost/mydatabase')
+					replace <generated_password> with actual
+				NookBrosGotchu
+	teamapp_prod_mysql: Here, "teamapp" is your application name, "prod" signifies the production environment, and "mysql" clarifies the type of database.
+		Panoptes_prod_mysql
+			AtlasTUS2024
+
+
+
+docker run --name proj_dev_db -e MYSQL_ROOT_PASSWORD=Rum8&Tag2 -e MYSQL_DATABASE=mydatabase -e MYSQL_USER=teamAdmin -e MYSQL_PASSWORD=mypassword -p 3306:3306 -d mysql:latest
+
+docker exec -it proj_dev_db mysql -u teamAdmin -p
+
+6dQed6v21K47Yf0
+
+Refreshing Bash Commands in the Script
+
+Here's a quick overview of each command in the bash script you have:
+
+    1. docker stop proj_dev_db: This command stops the running container named proj_dev_db. If the container is not running, it does nothing.
+
+    2. docker rm proj_dev_db: This removes the stopped container so that you can reuse the name when creating a new container. It's important to remove the old container to avoid name conflicts and to clean up resources.
+
+    3. docker build -t proj_panoptes_app .: Builds a Docker image named proj_panoptes_app from a Dockerfile in the current directory (. signifies the current directory).
+
+    4. docker run --name proj_dev_db -p 3306:3306 -d proj_panoptes_app: Runs the newly built image as a container named proj_dev_db, forwarding the host's 3306 port to the container's 3306 port, and runs the container in detached mode (-d).
+
+    5. sleep 30: Pauses the script for 30 seconds to allow MySQL in the Docker container enough time to initialize before attempting to execute SQL commands.
+
+    6. docker exec proj_dev_db mysql -u root -pRum8&Tag2 -e "CREATE DATABASE newdatabase;" and the following command are used to execute SQL commands within the proj_dev_db container. These commands log into MySQL as the root user with the specified password and execute SQL for creating a new database and setting up a new user with privileges.
+
+Navigate to Ubuntu WSL:	
+cd /mnt/c/myDocker/Panoptes
+If you have multiple users use this:
+cd /mnt/c/Users/reply/myDocker/Panoptes/
+
+
+Running the Script:
+1. Ensures script file is executable
+	chmod +x rebuild.sh
+	
+2. Execution command	
+	./rebuild.sh
+
+

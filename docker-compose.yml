@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  bert-app:  # This is the BERT-based Python application
+    build: ./Panoptes_BERT
+    volumes:
+      - ./Panoptes_BERT:/app  # Mounts the app directory into the container
+    depends_on:
+      - mysql-db
+    ports:
+      - "5000:5000"
+
+  mysql-db:  # This is the MySQL database service
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: Rum8&Tag2
+      MYSQL_DATABASE: panoptesdb
+      MYSQL_USER: teamAdmin
+      MYSQL_PASSWORD: NookBrosGotchu
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./Panoptes_SQL/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql-data:
